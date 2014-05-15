@@ -1,0 +1,33 @@
+<h1>Listing waiters</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Phone</th>
+      <th>City</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @waiters.each do |waiter| %>
+      <tr>
+        <td><%= waiter.name %></td>
+        <td><%= waiter.email %></td>
+        <td><%= waiter.phone %></td>
+        <td><%= waiter.city %></td>
+        <td><%= link_to 'Show', waiter %></td>
+        <td><%= link_to 'Edit', edit_waiter_path(waiter) %></td>
+        <td><%= link_to 'Destroy', waiter, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Waiter', new_waiter_path %>

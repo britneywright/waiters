@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @waiter.name %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @waiter.email %>
+</p>
+
+<p>
+  <strong>Phone:</strong>
+  <%= @waiter.phone %>
+</p>
+
+<p>
+  <strong>City:</strong>
+  <%= @waiter.city %>
+</p>
+
+<%= link_to 'Edit', edit_waiter_path(@waiter) %> |
+<%= link_to 'Back', waiters_path %>
