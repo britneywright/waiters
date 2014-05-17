@@ -1,5 +1,5 @@
 class WaiterMailer < ActionMailer::Base
-  default from: 'blw06g@gmail.com', to: 'britney@britneywright.com'
+  default from: 'britney@britneywright.com', to: 'blw06g@gmail.com'
 
   def newwaiter_email(waiter)
     @waiter = waiter
