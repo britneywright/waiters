@@ -1,14 +1,16 @@
-<div id="top">
-  <header>
-      <div class="logo">
-          <h1>Waiters for Later</h1>
-      </div>
-      <nav>
-          <ul>
-              <li><a href="#" class="active">HOME</a></li>
-              <li><a href="#mid">ABOUT US</a></li>
-              <li><a href="#bot">WAITSTAFF</a></li>
-              <li><a href="#">EVENTS</a></li>
-          </ul>
-      </nav>
-  </header>
+    <div class="site-wrapper">
+
+      <div class="site-wrapper-inner">
+
+        <div class="cover-container">
+
+          <div class="masthead clearfix">
+            <div class="inner">
+              <h3 class="masthead-brand">Waiters for Later</h3>
+              <ul class="nav masthead-nav">
+                <li class="active"><%= link_to 'Home', root_path%></li>
+                <li><%= link_to 'Waiters', waiters_path %></li>
+                <li><%= link_to 'Events', events_path %></li>
+              </ul>
+            </div>
+          </div>

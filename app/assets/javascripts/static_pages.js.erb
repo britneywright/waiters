@@ -1,0 +1,39 @@
+window.onload = init;
+function init() {
+waiter = document.getElementById("waiterButton");
+host = document.getElementById("hostButton");
+waiter.onclick = handleWaiterFormDisplay;
+host.onclick = handleHostFormDisplay;
+waiterform = document.getElementById("waiter-inquiry");
+hostform = document.getElementById("event-inquiry");
+waiterSubmit = document.getElementById("waiterSubmit");
+hostSubmit = document.getElementById("hostSubmit");
+close = document.getElementById("close");
+close.onclick = handleCloseForm;
+}
+
+function handleWaiterFormDisplay () {
+  waiterform.setAttribute("class", "form-display");
+  hostform.setAttribute("class", "form-hidden");
+  waiterSubmit.onclick = handleFormSubmit;
+}
+
+function handleHostFormDisplay () {
+  hostform.setAttribute("class", "form-display");
+  waiterform.setAttribute("class", "form-hidden");
+  hostSubmit.onclick = handleFormSubmit;  
+}
+
+function handleFormSubmit () {
+  h3 = document.createElement("h3");
+  h3.innerHTML = "Request Submitted! We'll be in touch shortly!"
+  formButtons = document.getElementById("formButtons");
+  formButtons.appendChild(h3);
+  waiterform.setAttribute("class", "form-hidden");
+  hostform.setAttribute("class", "form-hidden");
+}
+
+
+function handleCloseForm () {
+  window.location.reload();
+}

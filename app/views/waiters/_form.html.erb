@@ -1,4 +1,4 @@
-<%= form_for(@waiter) do |f| %>
+<%= form_for(@waiter, remote: true) do |f| %>
   <% if @waiter.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@waiter.errors.count, "error") %> prohibited this waiter from being saved:</h2>
@@ -27,7 +27,8 @@
     <%= f.label :city %><br>
     <%= f.text_field :city %>
   </div>
-  <div class="actions">
-    <%= f.submit %>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      <input name="commit" class="btn btn-danger" type="submit" value="Create Waiter" />
   </div>
 <% end %>
