@@ -29,7 +29,7 @@ class WaitersController < ApplicationController
     respond_to do |format|
       if @waiter.save
         WaiterMailer.newwaiter_email(@waiter).deliver
-        format.html { redirect_to "/", notice: 'Waiter was successfully created.' }
+        format.html { redirect_to @waiter, notice: 'Waiter was successfully created.' }
         format.json { render action: 'show', status: :created, location: @waiter }
       else
         format.html { render "/", notice: 'Oops. Forgetting something?' }
