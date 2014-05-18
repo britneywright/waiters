@@ -3,7 +3,7 @@ class WaiterMailer < ActionMailer::Base
 
   def newwaiter_email(waiter)
     @waiter = waiter
-    @url = 'http://example.com'
+    @url = 'https://waitersforlater.herokuapp.com'
     mail(subject: 'New Waiter is Interested in Waiters for Later')
   end
 end
