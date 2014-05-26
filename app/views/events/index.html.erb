@@ -3,9 +3,6 @@
 <table>
   <thead>
     <tr>
-      <th>Name</th>
-      <th>Email</th>
-      <th>Phone</th>
       <th>Event date</th>
       <th>City</th>
       <th></th>
@@ -17,9 +14,6 @@
   <tbody>
     <% @events.each do |event| %>
       <tr>
-        <td><%= event.name %></td>
-        <td><%= event.email %></td>
-        <td><%= event.phone %></td>
         <td><%= event.event_date %></td>
         <td><%= event.city %></td>
         <td><%= link_to 'Show', event %></td>

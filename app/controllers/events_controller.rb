@@ -28,11 +28,14 @@ class EventsController < ApplicationController
 
     respond_to do |format|
       if @event.save
+        HostMailer.newhost_email(@event).deliver        
         format.html { redirect_to @event, notice: 'Event was successfully created.' }
         format.json { render action: 'show', status: :created, location: @event }
+        format.js   { render action: 'show', status: :created, location: @event }
       else
         format.html { render action: 'new' }
         format.json { render json: @event.errors, status: :unprocessable_entity }
+        format.js   { render json: @event.errors, status: :unprocessable_entity }        
       end
     end
   end
@@ -69,6 +72,6 @@ class EventsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def event_params
-      params.require(:event).permit(:name, :email, :phone, :event_date, :city)
+      params.require(:event).permit(:event_date, :city, hosts: [:id, :name, :phone, :email], waiters: [:id, :name, :phone, :email, :city])
     end
 end

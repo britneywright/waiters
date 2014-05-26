@@ -11,14 +11,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140513004832) do
+ActiveRecord::Schema.define(version: 20140523141142) do
 
   create_table "events", force: true do |t|
+    t.date     "event_date"
+    t.string   "city"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "host_id"
+  end
+
+  add_index "events", ["host_id"], name: "index_events_on_host_id"
+
+  create_table "events_waiters", id: false, force: true do |t|
+    t.integer "waiter_id", null: false
+    t.integer "event_id",  null: false
+  end
+
+  create_table "hosts", force: true do |t|
     t.string   "name"
     t.string   "email"
     t.string   "phone"
-    t.date     "event_date"
-    t.string   "city"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

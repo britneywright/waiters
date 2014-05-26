@@ -31,9 +31,11 @@ class WaitersController < ApplicationController
         WaiterMailer.newwaiter_email(@waiter).deliver
         format.html { redirect_to @waiter, notice: 'Waiter was successfully created.' }
         format.json { render action: 'show', status: :created, location: @waiter }
+        format.js { render action: 'show', status: :created, location: @waiter }
       else
-        format.html { render "/", notice: 'Oops. Forgetting something?' }
+        format.html { render action: 'new', :error => @waiter.errors }
         format.json { render json: @waiter.errors, status: :unprocessable_entity }
+        format.js { render json: @waiter.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -70,6 +72,6 @@ class WaitersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def waiter_params
-      params.require(:waiter).permit(:name, :email, :phone, :city)
+      params.require(:waiter).permit(:name, :email, :phone, :city, events:[:id, :event_date, :city])
     end
 end
