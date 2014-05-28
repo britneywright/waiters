@@ -1,47 +1,34 @@
-$(document).ready(function(){
+$(function () {
+  function model_success (node) {
+    node.modal('hide');
+    node.find('form input[type="text"]').val('');
 
-  $(document).bind('ajaxError', 'form#new_host', function(event, jqxhr, settings, exception){
+    clear_previous_form_errors(node);
+  }
 
-    // note: jqxhr.responseJSON undefined, parsing responseText instead
-    $(event.data).render_form_errors( $.parseJSON(jqxhr.responseText) );
+  function render_form_errors (node, errors) {
+    clear_previous_form_errors(node);
 
-  });
+    for (var field in errors) {
+      var control = $('input[name="' + field + '"]', node).parent();
 
-});
+      control.addClass('has-error');
 
-(function($) {
+      $('.help-block', control).html(errors[field].join(' & '));
+    }
+  }
 
-  $.fn.modal_success = function(){
-    // close modal
-    this.modal('hide');
-
-    // clear form input elements
-    // todo/note: handle textarea, select, etc
-    this.find('form input[type="text"]').val('');
-
-    // clear error state
-    this.clear_previous_errors();
-  };
-
-  $.fn.render_form_errors = function(errors){
-
-    $form = this;
-    this.clear_previous_errors();
-    model = this.data('model');
-
-    // show error messages in input form-group help-block
-    $.each(errors, function(field, messages){
-      $input = $('input[name="' + model + '[' + field + ']"]');
-      $input.closest('.form-group').addClass('has-error').find('.help-block').html( messages.join(' & ') );
-    });
-
-  };
-
-  $.fn.clear_previous_errors = function(){
-    $('.form-group.has-error', this).each(function(){
-      $('.help-block', $(this)).html('');
-      $(this).removeClass('has-error');
+  function clear_previous_form_errors (node) {
+    $('.form-group.has-error', node).each(function () {
+      $('.help-block', node).html('');
+      node.removeClass('has-error');
     });
   }
 
-}(jQuery));
+  $(document).bind('ajaxError', 'form', function(event, jqxhr, settings, exception) {
+    // note: jqxhr.responseJSON undefined, parsing responseText instead
+    var error_messages = $.parseJSON(jqxhr.responseText);
+
+    render_form_errors($(event.data), error_messages);
+  });
+});

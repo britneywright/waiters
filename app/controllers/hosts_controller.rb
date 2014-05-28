@@ -26,20 +26,23 @@ class HostsController < ApplicationController
   # POST /hosts.json
   def create
     @host = Host.new(host_params)
-    respond_to do |format|
-      if @host.save
-        format.html { redirect_to root_url, notice: 'Host was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @host }
-        format.js   { render action: 'show', status: :created, location: @host }
-      else
-        if @host.events.blank?
-          1.times {@host.events.build}
-        else
-        end
-        format.html { render action: 'new', :error => @host.errors }
-        format.json { render json: @host.errors, status: :unprocessable_entity }
-        format.js   { render json: @host.errors, status: :unprocessable_entity }
-      end
+
+    errors = {}
+
+    unless @host.save
+      errors.merge! @host.errors
+    end
+
+    event = Event.new(event_params.merge(host: @host))
+
+    unless event.save
+      errors.merge! event.errors
+    end
+
+    if errors.empty?
+      render action: 'show', status: :created, location: @host
+    else
+      render json: errors.to_json, status: :unprocessable_entity
     end
   end
 
@@ -75,6 +78,10 @@ class HostsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def host_params
-      params.require(:host).permit(:name, :email, :phone, events_attributes: [:id, :event_date, :city])
+      params.permit(:name, :email, :phone)
+    end
+
+    def event_params
+      params.permit(:event_date, :city)
     end
 end
