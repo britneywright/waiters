@@ -34,4 +34,10 @@ $(function () {
 
     render_form_errors($(selector), errors[model]);
   });
+
+  function modalAjaxSuccess (event, jqxhr, params, exception) {
+    clear_previous_form_errors($(event.data));
+  }
+
+  $(document).bind('ajaxSucess', 'form', modalAjaxSuccess);
 });
