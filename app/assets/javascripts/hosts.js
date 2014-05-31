@@ -1,5 +1,5 @@
 $(function () {
-  function model_success (node) {
+  function modal_success (node) {
     node.modal('hide');
     node.find('form input[type="text"]').val('');
 
@@ -27,8 +27,10 @@ $(function () {
 
   $(document).bind('ajaxError', 'form', function(event, jqxhr, settings, exception) {
     // note: jqxhr.responseJSON undefined, parsing responseText instead
-    var error_messages = $.parseJSON(jqxhr.responseText);
+    var errors = $.parseJSON(jqxhr.responseText).errors;
+    var model = Object.keys(errors)[0];
+    var selector = "#new_" + model;
 
-    render_form_errors($(event.data), error_messages);
+    render_form_errors($(selector), errors[model]);
   });
 });

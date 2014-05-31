@@ -42,7 +42,7 @@ class HostsController < ApplicationController
     if errors.empty?
       render action: 'show', status: :created, location: @host
     else
-      render json: errors.to_json, status: :unprocessable_entity
+      render json: {errors: {host: errors}}.to_json, status: :unprocessable_entity
     end
   end
 
