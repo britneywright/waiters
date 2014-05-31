@@ -25,9 +25,10 @@ $(function () {
     });
   }
 
-  $(document).bind('ajaxError', 'form', function(event, jqxhr, settings, exception) {
+  $(document).bind('ajaxError', 'form', function modalAjaxError (event, jqxhr, settings, exception) {
     // note: jqxhr.responseJSON undefined, parsing responseText instead
     var errors = $.parseJSON(jqxhr.responseText).errors;
+
     var model = Object.keys(errors)[0];
     var selector = "#new_" + model;
 
