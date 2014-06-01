@@ -29,11 +29,9 @@ class WaitersController < ApplicationController
     respond_to do |format|
       if @waiter.save
         WaiterMailer.newwaiter_email(@waiter).deliver
-        format.html { redirect_to @waiter, notice: 'Waiter was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @waiter }
-        format.js { render action: 'show', status: :created, location: @waiter }
+         format.js { render action: 'show', status: :created, location: @waiter }
       else
-        format.json { render json: {errors: {waiter: @waiter.errors}}.to_json, status: :unprocessable_entity }
+        format.js { render action: 'new', status: :unprocessable_entity }
       end
     end
   end

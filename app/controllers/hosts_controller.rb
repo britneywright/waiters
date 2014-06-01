@@ -26,23 +26,14 @@ class HostsController < ApplicationController
   # POST /hosts.json
   def create
     @host = Host.new(host_params)
-
-    errors = {}
-
-    unless @host.save
-      errors.merge! @host.errors
-    end
-
     event = Event.new(event_params.merge(host: @host))
 
-    unless event.save
-      errors.merge! event.errors
-    end
-
-    if errors.empty?
-      render action: 'show', status: :created, location: @host
-    else
-      render json: {errors: {host: errors}}.to_json, status: :unprocessable_entity
+    respond_to do |format|
+      if (@host.save && event.save)
+        format.js { render action: "show", status: :created, location: @host }
+      else
+        format.js   { render json: @host.errors, status: :unprocessable_entity }
+      end
     end
   end
 

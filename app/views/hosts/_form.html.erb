@@ -1,10 +1,9 @@
-<%= form_for(@host, remote: true, html: {role: :form, 'data-model' => 'host'}) do |f| %>
+<%= form_for(@host, remote: :true) do |f| %>
 
   <div class="form-group">
     <label class="control-label" for="event_date">Event Date</label>
     <br />
     <input type="date" name="event_date" class="form-control" />
-
     <span class="help-block"></span>
   </div>
 
@@ -12,7 +11,6 @@
     <label class="control-label" for="city">City</label>
     <br />
     <input type="text" name="city" class="form-control" />
-
     <span class="help-block"></span>
   </div>
 
@@ -20,7 +18,6 @@
     <label class="control-label" for="name">Name</label>
     <br />
     <input type="text" name="name" class="form-control" />
-
     <span class="help-block"></span>
   </div>
 
@@ -28,7 +25,6 @@
     <label class="control-label" for="email">Email</label>
     <br />
     <input type="text" name="email" class="form-control" />
-
     <span class="help-block"></span>
   </div>
 
@@ -36,7 +32,6 @@
     <label class="control-label" for="phone">Phone</label>
     <br />
     <input type="text" name="phone" class="form-control" />
-
     <span class="help-block"></span>
   </div>
 
