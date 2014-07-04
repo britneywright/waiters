@@ -20,9 +20,11 @@ before_action :set_inquiry, only: [:show, :edit, :update, :destroy]
   
     respond_to do |format|
       if (@inquiry.save)
-        format.js { render action: "show", status: :created, location: @inquiry }
+        format.html { redirect_to @inquiry, notice: 'Inquiry was successfully created.' }
+        format.json { render action: "show", status: :created, location: @inquiry }
       else
-        format.js { render json: @inquiry.errors, status: :unprocessable_entity}
+        format.html { render action: 'new' }
+        format.json { render json: @inquiry.errors, status: :unprocessable_entity}
       end
     end
   end
@@ -54,6 +56,6 @@ before_action :set_inquiry, only: [:show, :edit, :update, :destroy]
     end
 
     def inquiry_params
-      params.permit(:name, :role, :email, :phone, :city, :license, :date)
+      params.require(:inquiry).permit(:name, :role, :email, :phone, :city, :license, :date)
     end
 end
