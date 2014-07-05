@@ -1,14 +1,21 @@
-<%= simple_form_for(@inquiry, html: { class: 'form-horizontal' }) do |f| %>
-<label class="string required control-label" for="inquiry_role">Role</label>
-<div class="form-group string required inquiry_role">
-    <%= f.collection_radio_buttons :role, [["Host","Host"], ["Waiter","Waiter"]], :first, :last %>
+<%= simple_form_for @inquiry, 
+  wrapper_mappings: {
+    radio_buttons: :vertical_radio_and_checkboxes,
+    file: :horizontal_file_input,
+    boolean: :horizontal_boolean } do |f| %>
+    <%= f.input :role, as: :radio_buttons, collection: ["Host", "Waiter"] %>
+    <div style="display: none;" data-show-for="both">
+      <%= f.input :city %>
+      <%= f.input :name %>
+      <%= f.input :email, as: :email %>
+      <%= f.input :phone, as: :tel %>
     </div>
-    <%= f.input :city %>
-    <%= f.input :name %>
-    <%= f.input :email, as: :email %>
-    <%= f.input :phone, as: :tel %>
-    <%= f.input :date, as: :date, :order => [:month, :day, :year] %>
-    <label class="string required control-label" for="inquiry_license">License</label>
-    <%= f.collection_radio_buttons :license, [[true, "Yes"], [false,"No"]], :first, :last %>
-    <div><%= f.button :submit %></div> 
+    <div style="display: none;" data-show-for="Host">
+      <%= f.input :date, as: :date, :order => [:month, :day, :year] %>
+    </div>
+    <div style="display: none;" data-show-for="Waiter">
+      <%= f.input :license, as: :radio_buttons, collection: ["Yes", "No"] %>
+    </div>
+    <%= f.button :submit %>
+    <div id="log"></div>
 <% end %>

@@ -154,6 +154,16 @@ body {
   display: inline-block;
   width: auto;
 }
+
+.radio, .checkbox {
+  display: inline-block;
+  margin: 0 10px;
+}
+
+.radio_buttons {
+  display: block;
+}
+
 /*
  * Affix and center
  */
