@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140523141142) do
+ActiveRecord::Schema.define(version: 20140704225235) do
 
   create_table "events", force: true do |t|
     t.date     "event_date"
@@ -32,6 +32,18 @@ ActiveRecord::Schema.define(version: 20140523141142) do
     t.string   "name"
     t.string   "email"
     t.string   "phone"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "inquiries", force: true do |t|
+    t.string   "role"
+    t.string   "name"
+    t.string   "city"
+    t.string   "email"
+    t.string   "phone"
+    t.date     "date",       limit: 255
+    t.string   "license"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
