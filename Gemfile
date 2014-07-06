@@ -19,6 +19,9 @@ gem 'sass-rails', '~> 4.0.0'
 gem 'bootstrap-sass', '~> 3.1.1'
 gem 'simple_form'
 gem 'postmark-rails'
+gem 'devise'
+gem 'activeadmin', github: 'gregbell/active_admin'
+
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 
@@ -32,7 +35,8 @@ gem "haml-rails"
 # gem 'therubyracer', platforms: :ruby
 
 # Use jquery as the JavaScript library
-gem 'jquery-rails'
+gem 'jquery-rails', "~> 2.3.0"
+gem 'jquery-ui-rails', '~> 4.2.1'
 
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
