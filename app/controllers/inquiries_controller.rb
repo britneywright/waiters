@@ -1,6 +1,6 @@
 class InquiriesController < ApplicationController
 before_action :set_inquiry, only: [:show, :edit, :update, :destroy]
-
+before_action :admin_user, only: [:index, :destroy, :show, :edit, :update]
   def index
     @inquiries = Inquiry.all
   end
@@ -57,5 +57,9 @@ before_action :set_inquiry, only: [:show, :edit, :update, :destroy]
 
     def inquiry_params
       params.require(:inquiry).permit(:name, :role, :email, :phone, :city, :license, :date)
+    end
+
+    def admin_user
+      redirect_to(root_url) unless current_admin_user
     end
 end
