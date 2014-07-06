@@ -11,7 +11,7 @@
       <%= f.input :phone, as: :tel %>
     </div>
     <div style="display: none;" data-show-for="Host">
-      <%= f.input :date, as: :date, :order => [:month, :day, :year] %>
+      <%= f.input :date, as: :date, :order => [:month, :day, :year], :include_blank => true %>
     </div>
     <div style="display: none;" data-show-for="Waiter">
       <%= f.input :license, as: :radio_buttons, collection: ["Yes", "No"] %>
