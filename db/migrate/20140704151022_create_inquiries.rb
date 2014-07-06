@@ -6,7 +6,7 @@ class CreateInquiries < ActiveRecord::Migration
       t.string :city
       t.string :email
       t.string :phone
-      t.string :date
+      t.date :date
       t.string :license
 
       t.timestamps
