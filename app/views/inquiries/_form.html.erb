@@ -3,7 +3,16 @@
     radio_buttons: :vertical_radio_and_checkboxes,
     file: :horizontal_file_input,
     boolean: :horizontal_boolean } do |f| %>
-    <%= f.input :role, as: :radio_buttons, collection: ["Hire", "Work"], label: false %>
+    <div class ="form-group radio_buttons required inquiry_role">
+      <span class="radio">
+        <input class="radio_buttons required" id="inquiry_role_hire" name="inquiry[role]" type="radio" value="Hire">
+        <label for="inquiry_role_hire" name="inquiry[role]"><h2>Hire</h2></label>
+      </span>
+      <span class="radio">
+        <input class="radio_buttons required" id="inquiry_role_work" name="inquiry[role]" type="radio" value="Work">
+        <label for="inquiry_role_work" name="inquiry[role]"><h2>Work</h2></label>
+      </span>
+    </div>
     <div style="display: none;" data-show-for="both">
       <%= f.input :city %>
       <%= f.input :name %>

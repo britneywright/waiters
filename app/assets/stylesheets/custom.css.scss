@@ -164,6 +164,17 @@ body {
   display: block;
 }
 
+.inquiry_role .radio { 
+  input[type="radio"] {
+    display:none; 
+  }:checked + label { 
+    color:red;
+}
+}
+
+.inquiry_role .radio label {
+  padding: 10px;
+}
 /*
  * Affix and center
  */
